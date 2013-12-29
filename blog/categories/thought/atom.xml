@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Thought | Tech Blog]]></title>
+  <link href="http://balakiriev.me/blog/categories/thought/atom.xml" rel="self"/>
+  <link href="http://balakiriev.me/"/>
+  <updated>2013-12-29T16:22:08+01:00</updated>
+  <id>http://balakiriev.me/</id>
+  <author>
+    <name><![CDATA[Aleksander Balakiriev]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Thought Process]]></title>
+    <link href="http://balakiriev.me/blog/2013/10/05/thought-process/"/>
+    <updated>2013-10-05T00:13:00+02:00</updated>
+    <id>http://balakiriev.me/blog/2013/10/05/thought-process</id>
+    <content type="html"><![CDATA[<p>Today, I was about to Tweet something on Twitter. As I was looking down my activity feed, I thought to myself: &ldquo;what is a Tweet in the past?&rdquo;</p>
+
+<!-- more -->
+
+
+<p>Here&rsquo;s how my mind unfolded that question:</p>
+
+<blockquote><p>Is a tweet in the past a twot or a twit?</p>
+
+<p>Maybe a twittwot?</p>
+
+<p>Or twittertotter? (like pitter-patter, right?)</p>
+
+<p>Teeter-totter? (briefly reminisce childhood memories)</p>
+
+<p>TATER TOTS! (I don&rsquo;t even like breakfast)</p>
+
+<p>Food.</p></blockquote>
+
+<p>Now re-read in Ellen Degeneres&rsquo;s Dory voice in Finding Nemo.</p>
+
+<p>Welcome to my life.</p>
+]]></content>
+  </entry>
+  
+</feed>

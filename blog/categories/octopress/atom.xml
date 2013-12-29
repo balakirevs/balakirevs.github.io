@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | Tech Blog]]></title>
+  <link href="http://balakiriev.me/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://balakiriev.me/"/>
+  <updated>2013-12-29T16:22:08+01:00</updated>
+  <id>http://balakiriev.me/</id>
+  <author>
+    <name><![CDATA[Aleksander Balakiriev]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Github Blog Using Octopress]]></title>
+    <link href="http://balakiriev.me/blog/2013/12/29/creating-a-github-blog-using-octopress/"/>
+    <updated>2013-12-29T15:21:00+01:00</updated>
+    <id>http://balakiriev.me/blog/2013/12/29/creating-a-github-blog-using-octopress</id>
+    <content type="html"><![CDATA[<p>Warning This article assumes you already installed RVM and Ruby.</p>
+
+<p>Quick Summary for creating and deploying a post in Octopress</p>
+
+<p>$ rake new_post[&ldquo;New Post&rdquo;]
+$ rake generate
+$ git add .
+$ git commit -am &ldquo;Some comment here.&rdquo;
+$ git push origin source
+$ rake deploy
+Installation Process of Octopress</p>
+
+<!-- more -->
+
+
+<p>Octopress is a framework designed for Jekyll to build a static website. It’s very easy to setup a blog with Octopress. Post are edited using Markdown. Yes, you need to have a Github account at Github.com.</p>
+
+<p>Go to the terminal and clone the Octopress repo:</p>
+
+<p>git clone git://github.com/imathis/octopress.git octopress</p>
+
+<p>cd octopress
+Check the version of Ruby is 1.9.2. This version is required.</p>
+
+<p>ruby &mdash;version</p>
+
+<p>bundle install
+This command installs Octopress</p>
+
+<p>rake install
+Deploying to Github</p>
+
+<p>Create a new Github repository. If you are creating a personal blog create a repo called:</p>
+
+<p>username.github.com
+After creating the repo, run the following command.</p>
+
+<p>$rake setup_github_pages
+Which is supposed to:</p>
+
+<p>init a git repo
+rename the branch from master to source
+add your repo to origin.
+Running the previous command shows this:</p>
+
+<p>Enter the read/write url for your repository
+You have to enter it like this:</p>
+
+<p>git@github.com:username/username.github.com.git
+For me it didn’t rename the branch from master to source or add my remote repo. I did it manually (see below)</p>
+
+<p>Add your remote repo</p>
+
+<p>Check what remote repositories you have:</p>
+
+<p>git remote -v
+My output was:</p>
+
+<p>octopress   git://github.com/imathis/octopress.git (fetch)
+octopress   git://github.com/imathis/octopress.git (push)
+To add your repo do:</p>
+
+<p>git remote add origin git@github.com:username/username.github.com.git
+Rename the branch from master to source</p>
+
+<p>$git branch
+* master
+$git branch -m master source
+$git branch
+* source
+Preview on development stage</p>
+
+<p>$ rake preview
+Then browse to:</p>
+
+<p>localhost:4000
+If you get this error:</p>
+
+<p>Sorry, I cannot find /
+Read this link: Deploying to a Subdirectory</p>
+
+<p>First push to Github</p>
+
+<p>$rake generate
+$git add .
+$git commit -am &ldquo;First deploy to github.&rdquo;
+$git push origin source
+$rake deploy
+Create a new posting</p>
+
+<p>$rake new_post[&ldquo;Creating a Github Blog Using Octopress&rdquo;]
+Go to the app folder source/_posts to find the new posting</p>
+
+<p>Edit the posting and then follow these steps</p>
+
+<p>$rake generate
+$git add .
+$git commit -m &ldquo;Initial blog post.&rdquo;
+$git push origin source
+$rake deploy
+Add a custom domain</p>
+
+<p>Go to source folder and create 2 files :</p>
+
+<p>(mate if you are using Textmate)</p>
+
+<p>cd source
+mate CNAME
+mate .nojekyll
+Open the CNAMe file and this line:</p>
+
+<p>www.yourdomain.com
+The NoJekyll file will make Octopress works in Github Pages.</p>
+
+<p>Push again to github</p>
+
+<p>rake generate
+git add .
+git add -am &lsquo;domain configuration&rsquo;
+git push origin source
+rake deploy
+Github need time to read your CNAME and updating the sites.</p>
+]]></content>
+  </entry>
+  
+</feed>
