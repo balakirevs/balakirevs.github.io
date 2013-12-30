@@ -1,6 +1,3 @@
-/* 
-	Author: Maurice Krijtenberg
-*/
 var accordionExpanded = false;
 
 $(function () {
@@ -28,39 +25,4 @@ $(function () {
 			accordionExpanded = true;
 		}
 	});
-	
-	$('#send').click(function (e) {
-		e.preventDefault();
-		
-		var name    = $('#name').val();
-		var email   = $('#email').val();
-		var subject = $('#subject').val();
-		var message = $('#message').val();
-		
-		var dataString = 'name=' + name + '&email=' + email + '&subject=' + subject + '&message=' + message;
-		
-		$.ajax({
-			type: 'POST',
-			url: 'send.php',
-			data: dataString,
-			success: function (html) {
-				if (html == "OK") {
-					alert("Thank you! You're message has been sent!");
-					$('#reset').trigger('click');
-				} else {
-					alert(html);
-				}	
-			}
-		});	
-	});
-});
-
-$(document).ready(function() {
-	$(".fancybox").fancybox({
-		padding: 0,
-		margin: 50,
-		maxHeight: 900,
-		closeBtn: false,
-		closeClick: true
-	});
-});
+})
