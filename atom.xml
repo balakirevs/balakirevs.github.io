@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tech Blog]]></title>
-  <link href="http://balakiriev.me/atom.xml" rel="self"/>
-  <link href="http://balakiriev.me/"/>
-  <updated>2013-12-30T16:01:44+01:00</updated>
-  <id>http://balakiriev.me/</id>
+  <link href="http://balakiriev.com/atom.xml" rel="self"/>
+  <link href="http://balakiriev.com/"/>
+  <updated>2013-12-30T16:06:25+01:00</updated>
+  <id>http://balakiriev.com/</id>
   <author>
-    <name><![CDATA[Aleksander Balakiriev]]></name>
+    <name><![CDATA[Aleksandr Balakiriev]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Pro tips for writing better rspec tests]]></title>
-    <link href="http://balakiriev.me/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/"/>
+    <link href="http://balakiriev.com/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/"/>
     <updated>2013-12-30T15:42:00+01:00</updated>
-    <id>http://balakiriev.me/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests</id>
+    <id>http://balakiriev.com/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests</id>
     <content type="html"><![CDATA[<p>Writing ‘good code’ is always a challenge for every project. Unfortunately, we always associate it with development and not tests. What about automation test code? Ever notice that you have write more automation code than the actual lines of development code?</p>
 
 <p>Improper automation code leads to slow running specs, huge LOC in your spec files and a whole lot of confusion when you open a spec file. So, how does one avoid these problems?</p>
@@ -185,9 +185,9 @@ Note: We can tag entire context or a single example in the spec file. For more i
   
   <entry>
     <title type="html"><![CDATA[Creation of remote git branch]]></title>
-    <link href="http://balakiriev.me/blog/2013/12/29/creation-of-remote-git-branch/"/>
+    <link href="http://balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch/"/>
     <updated>2013-12-29T16:17:00+01:00</updated>
-    <id>http://balakiriev.me/blog/2013/12/29/creation-of-remote-git-branch</id>
+    <id>http://balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch</id>
     <content type="html"><![CDATA[<p>1056
 down vote
 accepted
@@ -221,9 +221,9 @@ But when you omit one, it assumes both names are the same.</p>
   
   <entry>
     <title type="html"><![CDATA[Globalize your .gitignore]]></title>
-    <link href="http://balakiriev.me/blog/2013/12/29/globalize-your-gitignore/"/>
+    <link href="http://balakiriev.com/blog/2013/12/29/globalize-your-gitignore/"/>
     <updated>2013-12-29T15:42:00+01:00</updated>
-    <id>http://balakiriev.me/blog/2013/12/29/globalize-your-gitignore</id>
+    <id>http://balakiriev.com/blog/2013/12/29/globalize-your-gitignore</id>
     <content type="html"><![CDATA[<p>When I was new to git, I would always jam the same old stuff in each project&rsquo;s .gitignore, like:</p>
 
 <p>.gitignore</p>
@@ -305,9 +305,9 @@ Every git project, system-wide, will now respect this list of ignored file patte
   
   <entry>
     <title type="html"><![CDATA[Creating a Github Blog Using Octopress]]></title>
-    <link href="http://balakiriev.me/blog/2013/12/29/creating-a-github-blog-using-octopress/"/>
+    <link href="http://balakiriev.com/blog/2013/12/29/creating-a-github-blog-using-octopress/"/>
     <updated>2013-12-29T15:21:00+01:00</updated>
-    <id>http://balakiriev.me/blog/2013/12/29/creating-a-github-blog-using-octopress</id>
+    <id>http://balakiriev.com/blog/2013/12/29/creating-a-github-blog-using-octopress</id>
     <content type="html"><![CDATA[<p>Warning This article assumes you already installed RVM and Ruby.</p>
 
 <p>Quick Summary for creating and deploying a post in Octopress</p>
@@ -435,9 +435,9 @@ Github need time to read your CNAME and updating the sites.</p>
   
   <entry>
     <title type="html"><![CDATA[Show generated SQL in Rails 3 console]]></title>
-    <link href="http://balakiriev.me/blog/2013/10/05/show-generated-sql-in-rails-3-console/"/>
+    <link href="http://balakiriev.com/blog/2013/10/05/show-generated-sql-in-rails-3-console/"/>
     <updated>2013-10-05T00:14:00+02:00</updated>
-    <id>http://balakiriev.me/blog/2013/10/05/show-generated-sql-in-rails-3-console</id>
+    <id>http://balakiriev.com/blog/2013/10/05/show-generated-sql-in-rails-3-console</id>
     <content type="html"><![CDATA[<p>Have you ever wanted to see the resulting SQL of a query in Rails console? Well, unfortunately there&rsquo;s not really an &lsquo;easy&rsquo; way to do this, other than hacking the console, so here we go.</p>
 
 <!-- more -->
@@ -478,9 +478,9 @@ Github need time to read your CNAME and updating the sites.</p>
   
   <entry>
     <title type="html"><![CDATA[Thought Process]]></title>
-    <link href="http://balakiriev.me/blog/2013/10/05/thought-process/"/>
+    <link href="http://balakiriev.com/blog/2013/10/05/thought-process/"/>
     <updated>2013-10-05T00:13:00+02:00</updated>
-    <id>http://balakiriev.me/blog/2013/10/05/thought-process</id>
+    <id>http://balakiriev.com/blog/2013/10/05/thought-process</id>
     <content type="html"><![CDATA[<p>Today, I was about to Tweet something on Twitter. As I was looking down my activity feed, I thought to myself: &ldquo;what is a Tweet in the past?&rdquo;</p>
 
 <!-- more -->
@@ -508,9 +508,9 @@ Github need time to read your CNAME and updating the sites.</p>
   
   <entry>
     <title type="html"><![CDATA[Apple iPhone Tracks you Everywhere]]></title>
-    <link href="http://balakiriev.me/blog/2013/10/05/apple-iphone-tracks-you-everywhere/"/>
+    <link href="http://balakiriev.com/blog/2013/10/05/apple-iphone-tracks-you-everywhere/"/>
     <updated>2013-10-05T00:11:00+02:00</updated>
-    <id>http://balakiriev.me/blog/2013/10/05/apple-iphone-tracks-you-everywhere</id>
+    <id>http://balakiriev.com/blog/2013/10/05/apple-iphone-tracks-you-everywhere</id>
     <content type="html"><![CDATA[<p><a href="http://editorial.designtaxi.com/news-track2004/1.jpg">Map</a></p>
 
 <p>A team of researchers recently uncovered that the Apple iPhone secretly stores your location data at regular intervals in a hidden text file and then uploads that file to your computer.</p>
@@ -526,9 +526,9 @@ Github need time to read your CNAME and updating the sites.</p>
   
   <entry>
     <title type="html"><![CDATA[Custom Domain URL Shorteners with bit.ly]]></title>
-    <link href="http://balakiriev.me/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly/"/>
+    <link href="http://balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly/"/>
     <updated>2013-10-05T00:09:00+02:00</updated>
-    <id>http://balakiriev.me/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly</id>
+    <id>http://balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly</id>
     <content type="html"><![CDATA[<p>I recently acquired <a href="http://leav.in">leav.in</a> because I wanted to make my own URL shortening service. After spending a few hours making a little Rails application that connected to a backend service and a nice little UI, I decided to actually google &ldquo;custom domain URL shortner.&rdquo; Low and behold, <a href="http://bit.ly">bit.ly</a> offers a free service, bit.ly pro that provides custom domain short URL service and then some! It was a little difficult to fiddle through (not because of configuration, but just finding stuff), so here&rsquo;s a little walk through to help you out!</p>
 
 <!-- more -->
@@ -563,9 +563,9 @@ Github need time to read your CNAME and updating the sites.</p>
   
   <entry>
     <title type="html"><![CDATA[Functionality In Initial Webapps]]></title>
-    <link href="http://balakiriev.me/blog/2013/10/04/functionality-in-initial-webapps/"/>
+    <link href="http://balakiriev.com/blog/2013/10/04/functionality-in-initial-webapps/"/>
     <updated>2013-10-04T00:00:00+02:00</updated>
-    <id>http://balakiriev.me/blog/2013/10/04/functionality-in-initial-webapps</id>
+    <id>http://balakiriev.com/blog/2013/10/04/functionality-in-initial-webapps</id>
     <content type="html"><![CDATA[<hr />
 
 <p>layout: post

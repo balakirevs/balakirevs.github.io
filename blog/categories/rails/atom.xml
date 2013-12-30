@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails | Tech Blog]]></title>
-  <link href="http://balakiriev.me/blog/categories/rails/atom.xml" rel="self"/>
-  <link href="http://balakiriev.me/"/>
-  <updated>2013-12-30T16:01:44+01:00</updated>
-  <id>http://balakiriev.me/</id>
+  <link href="http://balakiriev.com/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://balakiriev.com/"/>
+  <updated>2013-12-30T16:06:25+01:00</updated>
+  <id>http://balakiriev.com/</id>
   <author>
-    <name><![CDATA[Aleksander Balakiriev]]></name>
+    <name><![CDATA[Aleksandr Balakiriev]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Show generated SQL in Rails 3 console]]></title>
-    <link href="http://balakiriev.me/blog/2013/10/05/show-generated-sql-in-rails-3-console/"/>
+    <link href="http://balakiriev.com/blog/2013/10/05/show-generated-sql-in-rails-3-console/"/>
     <updated>2013-10-05T00:14:00+02:00</updated>
-    <id>http://balakiriev.me/blog/2013/10/05/show-generated-sql-in-rails-3-console</id>
+    <id>http://balakiriev.com/blog/2013/10/05/show-generated-sql-in-rails-3-console</id>
     <content type="html"><![CDATA[<p>Have you ever wanted to see the resulting SQL of a query in Rails console? Well, unfortunately there&rsquo;s not really an &lsquo;easy&rsquo; way to do this, other than hacking the console, so here we go.</p>
 
 <!-- more -->

@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: github | Tech Blog]]></title>
-  <link href="http://balakiriev.me/blog/categories/github/atom.xml" rel="self"/>
-  <link href="http://balakiriev.me/"/>
-  <updated>2013-12-30T16:01:44+01:00</updated>
-  <id>http://balakiriev.me/</id>
+  <link href="http://balakiriev.com/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://balakiriev.com/"/>
+  <updated>2013-12-30T16:06:25+01:00</updated>
+  <id>http://balakiriev.com/</id>
   <author>
-    <name><![CDATA[Aleksander Balakiriev]]></name>
+    <name><![CDATA[Aleksandr Balakiriev]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Globalize your .gitignore]]></title>
-    <link href="http://balakiriev.me/blog/2013/12/29/globalize-your-gitignore/"/>
+    <link href="http://balakiriev.com/blog/2013/12/29/globalize-your-gitignore/"/>
     <updated>2013-12-29T15:42:00+01:00</updated>
-    <id>http://balakiriev.me/blog/2013/12/29/globalize-your-gitignore</id>
+    <id>http://balakiriev.com/blog/2013/12/29/globalize-your-gitignore</id>
     <content type="html"><![CDATA[<p>When I was new to git, I would always jam the same old stuff in each project&rsquo;s .gitignore, like:</p>
 
 <p>.gitignore</p>
@@ -99,9 +99,9 @@ Every git project, system-wide, will now respect this list of ignored file patte
   
   <entry>
     <title type="html"><![CDATA[Creating a Github Blog Using Octopress]]></title>
-    <link href="http://balakiriev.me/blog/2013/12/29/creating-a-github-blog-using-octopress/"/>
+    <link href="http://balakiriev.com/blog/2013/12/29/creating-a-github-blog-using-octopress/"/>
     <updated>2013-12-29T15:21:00+01:00</updated>
-    <id>http://balakiriev.me/blog/2013/12/29/creating-a-github-blog-using-octopress</id>
+    <id>http://balakiriev.com/blog/2013/12/29/creating-a-github-blog-using-octopress</id>
     <content type="html"><![CDATA[<p>Warning This article assumes you already installed RVM and Ruby.</p>
 
 <p>Quick Summary for creating and deploying a post in Octopress</p>

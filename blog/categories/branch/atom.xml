@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: branch | Tech Blog]]></title>
-  <link href="http://balakiriev.me/blog/categories/branch/atom.xml" rel="self"/>
-  <link href="http://balakiriev.me/"/>
-  <updated>2013-12-30T16:01:44+01:00</updated>
-  <id>http://balakiriev.me/</id>
+  <link href="http://balakiriev.com/blog/categories/branch/atom.xml" rel="self"/>
+  <link href="http://balakiriev.com/"/>
+  <updated>2013-12-30T16:06:25+01:00</updated>
+  <id>http://balakiriev.com/</id>
   <author>
-    <name><![CDATA[Aleksander Balakiriev]]></name>
+    <name><![CDATA[Aleksandr Balakiriev]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Creation of remote git branch]]></title>
-    <link href="http://balakiriev.me/blog/2013/12/29/creation-of-remote-git-branch/"/>
+    <link href="http://balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch/"/>
     <updated>2013-12-29T16:17:00+01:00</updated>
-    <id>http://balakiriev.me/blog/2013/12/29/creation-of-remote-git-branch</id>
+    <id>http://balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch</id>
     <content type="html"><![CDATA[<p>1056
 down vote
 accepted
