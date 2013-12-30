@@ -100,6 +100,86 @@
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/">Pro Tips for Writing Better Rspec Tests</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Aleksander Balakiriev</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-30T15:42:00+01:00" pubdate data-updated="true">Dec 30<span>th</span>, 2013</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rspec/'>rspec</a>
+  
+</span>
+
+
+        
+         | <a href="/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Writing ‘good code’ is always a challenge for every project. Unfortunately, we always associate it with development and not tests. What about automation test code? Ever notice that you have write more automation code than the actual lines of development code?</p>
+
+<p>Improper automation code leads to slow running specs, huge LOC in your spec files and a whole lot of confusion when you open a spec file. So, how does one avoid these problems?</p>
+
+<p>Here are a few guidelines:</p>
+
+<p>Tip #1: Follow
+<a title="Rspec-style" href="https://github.com/howaboutwe/rspec-style-guide">Rspec style</a></p>
+
+<p>Tip #2: Independent tests</p>
+
+<p>We could use the word idempotent here but as a thumb rule there should not be any dependencies across specs and if we run the test multiple times in succession, it should give the same result So, it’s very important that every spec  run in clean database environment. Use <a href="https://github.com/bmabey/database_cleaner">database cleaner</a>  gem properly, so that you don’t end of having to seed the database before each test! So, if you don’t want roles and countries being deleted,</p>
+
+<p>config.before(:suite) do
+  DatabaseCleaner.strategy = :truncation, {:except => %w[roles countries]}
+end</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/">Read More</a>
+    </footer>
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/12/29/creation-of-remote-git-branch/">Creation of Remote Git Branch</a></h1>
     
     
@@ -665,6 +745,10 @@ categories: webapp functionality</p>
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/">Pro tips for writing better rspec tests</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/12/29/creation-of-remote-git-branch/">Creation of remote git branch</a>
         </li>
       
@@ -678,10 +762,6 @@ categories: webapp functionality</p>
       
         <li>
           <a href="/blog/2013/10/05/show-generated-sql-in-rails-3-console/">Show generated SQL in Rails 3 console</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2013/10/05/thought-process/">Thought Process</a>
         </li>
       
     </ul>

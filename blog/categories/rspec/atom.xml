@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rspec | Tech Blog]]></title>
+  <link href="http://balakiriev.me/blog/categories/rspec/atom.xml" rel="self"/>
+  <link href="http://balakiriev.me/"/>
+  <updated>2013-12-30T16:01:44+01:00</updated>
+  <id>http://balakiriev.me/</id>
+  <author>
+    <name><![CDATA[Aleksander Balakiriev]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Pro tips for writing better rspec tests]]></title>
+    <link href="http://balakiriev.me/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/"/>
+    <updated>2013-12-30T15:42:00+01:00</updated>
+    <id>http://balakiriev.me/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests</id>
+    <content type="html"><![CDATA[<p>Writing ‘good code’ is always a challenge for every project. Unfortunately, we always associate it with development and not tests. What about automation test code? Ever notice that you have write more automation code than the actual lines of development code?</p>
+
+<p>Improper automation code leads to slow running specs, huge LOC in your spec files and a whole lot of confusion when you open a spec file. So, how does one avoid these problems?</p>
+
+<p>Here are a few guidelines:</p>
+
+<p>Tip #1: Follow
+<a title="Rspec-style" href="https://github.com/howaboutwe/rspec-style-guide">Rspec style</a></p>
+
+<p>Tip #2: Independent tests</p>
+
+<p>We could use the word idempotent here but as a thumb rule there should not be any dependencies across specs and if we run the test multiple times in succession, it should give the same result So, it’s very important that every spec  run in clean database environment. Use <a href="https://github.com/bmabey/database_cleaner">database cleaner</a>  gem properly, so that you don’t end of having to seed the database before each test! So, if you don’t want roles and countries being deleted,</p>
+
+<p>config.before(:suite) do
+  DatabaseCleaner.strategy = :truncation, {:except => %w[roles countries]}
+end</p>
+
+<!--more -->
+
+
+<p>Tip #3: Use expect and not should syntax</p>
+
+<p>It’s just nice and clean!  Use the Transpec gem helps you to convert from should syntax to expect syntax</p>
+
+<p>expect(User.all.count).to eq(1)
+instead of</p>
+
+<p>User.all.count.should == 1</p>
+
+<p>Tip#4: Use the new syntax for object creation</p>
+
+<p>Use the new FactoryGirl syntax that is supported in factory_girl4. This helps the code be clean of any harsh gem dependent syntax of class names!</p>
+
+<p>create(:user)
+instead of</p>
+
+<p>FactoryGirl.create(:user)</p>
+
+<p>Tip #5: Use let variables instead of instance variables</p>
+
+<p>This makes code look cleaner. For better understanding about let read the answer given by Myron. Here is an example</p>
+
+<p>describe Project do
+  let(:project) { build(:project) }</p>
+
+<p>  it &ldquo;project should be valid&rdquo; do</p>
+
+<pre><code>expect(project.valid?).to eq(true)
+</code></pre>
+
+<p>  end
+end
+Now, when the example executes it defines a method called project if its not defined already or simply returns the value. Fast and efficient.</p>
+
+<p>Tip #6: Use correct expectations for a spec</p>
+
+<p>Obvious as it seems – the test we write should test the write stuff – not just make the test pass! Here is an example of making a test case pass.</p>
+
+<p>context &ldquo;#edit&rdquo; do
+  it &ldquo;user should be able to edit his profile&rdquo; do</p>
+
+<pre><code>get :edit, id: user.id
+expect(response).to be_success
+</code></pre>
+
+<p>  end
+end
+So, your expectation should ideally be</p>
+
+<p>describe UsersController do
+  context &ldquo;#edit&rdquo; do</p>
+
+<pre><code>#render_views
+it "user should be able to edit his profile" do
+  get :edit, id: user.id
+  expect(response).to render_template("edit")
+end
+</code></pre>
+
+<p>  end
+end
+Here #edit is a method defined in UsersController. So I defined a context in my specs.</p>
+
+<p>Do remember that by default all controller specs stub the template rendering unless and until you include render_views</p>
+
+<p>Tip #7: Use shared examples.</p>
+
+<p>When you want to test the same functionality across different subjects, for example different kinds of users, use shared examples.</p>
+
+<p>context &ldquo;#edit&rdquo; do
+  it &ldquo;admin should be able to edit his profile&rdquo;
+  it &ldquo;distributor should be able to edit his profile&rdquo;
+end
+You can write as</p>
+
+<p>context &ldquo;#edit&rdquo; do
+  shared_examples &ldquo;profile_editing&rdquo; do</p>
+
+<pre><code>it "user should be able to edit his profile"
+</code></pre>
+
+<p>  end</p>
+
+<p>  context &ldquo;admin&rdquo; do</p>
+
+<pre><code>include_examples "profile_editing"
+it "should be able see to list of distributors"
+</code></pre>
+
+<p>  end</p>
+
+<p>  context &ldquo;distributor&rdquo; do</p>
+
+<pre><code>include_examples "profile_editing"
+it "should not able to see list of distributors"
+</code></pre>
+
+<p>  end
+end
+A word of caution – you may lost readability if you use too many shared examples in single file.</p>
+
+<p>Tip #8: Use conditional hooks</p>
+
+<p>Sometimes if you want to execute some piece of code only for one example but not for all examples in a context then you can use conditional hooks.</p>
+
+<p>context &ldquo;#update&rdquo; do
+  before(:each, run: true) do</p>
+
+<pre><code># do something
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &ldquo;example1&rdquo;, run: :true
+  it &ldquo;example2&rdquo;
+end
+Now before(:each) will run only for first example but not for second example.</p>
+
+<p>Tip #9: Profiling your examples</p>
+
+<p>rspec gives you an option to examine how much time does a example group take to run.  Simply run specs with the –profile flag.</p>
+
+<p>rspec ./spec/models/user_spec.rb:51 &mdash;profile</p>
+
+<h1>output:</h1>
+
+<p>0.22431 seconds ./spec/models/user_spec.rb:51
+Tip #10: Tagging</p>
+
+<p>When you have a large test suite and you changed some code, how do you ensure that your change didn’t breaks existing functionality? One way is to run your specs locally then push then your Continuous Integration server that runs all specs. This is time consuming if you want to test only a specific set of tests.</p>
+
+<p>Tag them! Run your module specified specs by using tags. For example, suppose we have a Commission feature and we written model specs, controller specs and integration specs for it. We can easily tag each file with commission:true.  So when we change something related to commissions,  we can run only commission related specs!. We can tag our scenarios as below</p>
+
+<h1>spec/models/commission_spec.rb</h1>
+
+<p>describe Commission, commission: true do
+  # do something
+end
+rspec –tag commission
+Note: We can tag entire context or a single example in the spec file. For more information please follow this link</p>
+
+<p>All these tips are a results of practical problems I have faced and overcome and a result of finding out the best we can do our own testing. More suggestions and tips are welcome!</p>
+]]></content>
+  </entry>
+  
+</feed>
