@@ -1,1 +1,1 @@
-My blog using Jekyll and Octopress 2013.
+My blog using Jekyll 2013.
