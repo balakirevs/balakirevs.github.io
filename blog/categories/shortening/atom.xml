@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Shortening | Tech Blog]]></title>
-  <link href="http://balakiriev.com/blog/categories/shortening/atom.xml" rel="self"/>
-  <link href="http://balakiriev.com/"/>
-  <updated>2014-01-01T01:27:21+01:00</updated>
-  <id>http://balakiriev.com/</id>
+  <link href="http://blog.balakiriev.com/blog/categories/shortening/atom.xml" rel="self"/>
+  <link href="http://blog.balakiriev.com/"/>
+  <updated>2014-01-02T20:19:12+01:00</updated>
+  <id>http://blog.balakiriev.com/</id>
   <author>
     <name><![CDATA[Aleksandr Balakiriev]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Custom Domain URL Shorteners with bit.ly]]></title>
-    <link href="http://balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly/"/>
+    <link href="http://blog.balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly/"/>
     <updated>2013-10-05T00:09:00+02:00</updated>
-    <id>http://balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly</id>
+    <id>http://blog.balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly</id>
     <content type="html"><![CDATA[<p>I recently acquired <a href="http://leav.in">leav.in</a> because I wanted to make my own URL shortening service. After spending a few hours making a little Rails application that connected to a backend service and a nice little UI, I decided to actually google &ldquo;custom domain URL shortner.&rdquo; Low and behold, <a href="http://bit.ly">bit.ly</a> offers a free service, bit.ly pro that provides custom domain short URL service and then some! It was a little difficult to fiddle through (not because of configuration, but just finding stuff), so here&rsquo;s a little walk through to help you out!</p>
 
 <!-- more -->

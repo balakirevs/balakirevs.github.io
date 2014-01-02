@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: branch | Tech Blog]]></title>
-  <link href="http://balakiriev.com/blog/categories/branch/atom.xml" rel="self"/>
-  <link href="http://balakiriev.com/"/>
-  <updated>2014-01-01T01:27:21+01:00</updated>
-  <id>http://balakiriev.com/</id>
+  <link href="http://blog.balakiriev.com/blog/categories/branch/atom.xml" rel="self"/>
+  <link href="http://blog.balakiriev.com/"/>
+  <updated>2014-01-02T20:19:12+01:00</updated>
+  <id>http://blog.balakiriev.com/</id>
   <author>
     <name><![CDATA[Aleksandr Balakiriev]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Creation of remote git branch]]></title>
-    <link href="http://balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch/"/>
+    <link href="http://blog.balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch/"/>
     <updated>2013-12-29T16:17:00+01:00</updated>
-    <id>http://balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch</id>
+    <id>http://blog.balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch</id>
     <content type="html"><![CDATA[<p>1056
 down vote
 accepted
