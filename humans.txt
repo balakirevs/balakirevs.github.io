@@ -4,11 +4,11 @@
 
 /* TEAM */
   Owner: Aleksandr Balakiriev
-  Site: http://balakiriev.com
+  Site: http://blog.balakiriev.com
   Twitter: @sbalakirev
 
   UX Designer: Aleksandr Balakiriev
-  Site: http://balakiriev.com
+  Site: http://blog.balakiriev.com
   Twitter: @sbalakirev
 
 /* SITE */
