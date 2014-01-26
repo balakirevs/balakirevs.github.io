@@ -4,7 +4,7 @@
   <title><![CDATA[Tech Blog]]></title>
   <link href="http://blog.balakiriev.com/atom.xml" rel="self"/>
   <link href="http://blog.balakiriev.com/"/>
-  <updated>2014-01-02T21:19:46+01:00</updated>
+  <updated>2014-01-26T18:57:40+01:00</updated>
   <id>http://blog.balakiriev.com/</id>
   <author>
     <name><![CDATA[Aleksandr Balakiriev]]></name>
@@ -562,26 +562,18 @@ Github need time to read your CNAME and updating the sites.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Functionality In Initial Webapps]]></title>
+    <title type="html"><![CDATA[Functionality in initial webapps]]></title>
     <link href="http://blog.balakiriev.com/blog/2013/10/04/functionality-in-initial-webapps/"/>
-    <updated>2013-10-04T00:00:00+02:00</updated>
+    <updated>2013-10-04T23:52:00+02:00</updated>
     <id>http://blog.balakiriev.com/blog/2013/10/04/functionality-in-initial-webapps</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>layout: post
-title: &ldquo;Functionality in initial webapps&rdquo;
-date: 2013-10-04 23:52
-comments: true
-categories: webapp functionality</p>
-
-<p>I&rsquo;m a firm believer that UI should always supersede functionality, especially in the case of new webapps. People generally lash out when I say such things, but when you&rsquo;re starting a small company or launching a new product, a fully functional website does you no good if people don&rsquo;t know how to use it. Conversely, a buggy website with helpful, encouraging error handlers will encourage users to keep coming back.</p>
+    <content type="html"><![CDATA[<p>I&rsquo;m a firm believer that UI should always supersede functionality, especially in the case of new webapps. People generally lash out when I say such things, but when you&rsquo;re starting a small company or launching a new product, a fully functional website does you no good if people don&rsquo;t know how to use it. Conversely, a buggy website with helpful, encouraging error handlers will encourage users to keep coming back.</p>
 
 <!-- more -->
 
 
 <p>Think about it this way &ndash; if Facebook suddenly went down, would you come back in an hour? If Facebook never threw any errors and was &ldquo;perfect&rdquo;, yet it was totally unusable, would you still use it? Probably not!</p>
 
-<blockquote><p>A functional UI is more important than a functional app.</p></blockquote>
+<p>A functional UI is more important than a functional app.</p>
 
 <p>Developers should spend more time analyzing user-testing instead of debugging features. While I don&rsquo;t condone releasing a buggy application, I&rsquo;d much rather see a pretty application with a few bugs released over a perfect application that only developers know how to use.</p>
 
