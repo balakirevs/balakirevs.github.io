@@ -14,4 +14,3 @@ A team of researchers recently uncovered that the Apple iPhone secretly stores
 
 Anyone will technical know-how could possibly gain access to this data. This poses a huge security risk and people's privacy could be in jeopardy.
 
-[Read the original article here](http://designtaxi.com/news/34575/iPhone-Found-to-Track-Users-Movement).
