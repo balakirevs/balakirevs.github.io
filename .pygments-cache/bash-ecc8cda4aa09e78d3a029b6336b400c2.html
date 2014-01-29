@@ -1,0 +1,41 @@
+<div class="highlight"><pre><span class="c"># PAM configuration for the Secure Shell service</span>
+
+<span class="c"># Read environment variables from /etc/environment and</span>
+<span class="c"># /etc/security/pam_env.conf.</span>
+auth       required     pam_google_authenticator.so <span class="c"># Two-Factor Auth</span>
+auth       required     pam_env.so <span class="c"># [1]</span>
+<span class="c"># In Debian 4.0 (etch), locale-related environment variables were moved to</span>
+<span class="c"># /etc/default/locale, so read that as well.</span>
+auth       required     pam_env.so <span class="nv">envfile</span><span class="o">=</span>/etc/default/locale
+
+<span class="c"># Standard Un*x authentication.</span>
+@include common-auth
+
+<span class="c"># Disallow non-root logins when /etc/nologin exists.</span>
+account    required     pam_nologin.so
+
+<span class="c"># Uncomment and edit /etc/security/access.conf if you need to set complex</span>
+<span class="c"># access limits that are hard to express in sshd_config.</span>
+<span class="c"># account  required     pam_access.so</span>
+
+<span class="c"># Standard Un*x authorization.</span>
+@include common-account
+
+<span class="c"># Standard Un*x session setup and teardown.</span>
+@include common-session
+
+<span class="c"># Print the message of the day upon successful login.</span>
+session    optional     pam_motd.so <span class="c"># [1]</span>
+
+<span class="c"># Print the status of the user&#39;s mailbox upon successful login.</span>
+session    optional     pam_mail.so standard noenv <span class="c"># [1]</span>
+
+<span class="c"># Set up user limits from /etc/security/limits.conf.</span>
+session    required     pam_limits.so
+
+<span class="c"># Set up SELinux capabilities (need modified pam)</span>
+<span class="c"># session  required     pam_selinux.so multiple</span>
+
+<span class="c"># Standard Un*x password updating.</span>
+@include common-password
+</pre></div>

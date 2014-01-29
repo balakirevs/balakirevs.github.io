@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tech Blog]]></title>
+  <link href="http://blog.balakiriev.com/atom.xml" rel="self"/>
+  <link href="http://blog.balakiriev.com/"/>
+  <updated>2014-01-29T20:27:26+01:00</updated>
+  <id>http://blog.balakiriev.com/</id>
+  <author>
+    <name><![CDATA[Aleksandr Balakiriev]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Tracking domains and subdomains in Google Analytics]]></title>
+    <link href="http://blog.balakiriev.com/blog/2014/01/27/tracking-domains-and-subdomains-in-google-analytics/"/>
+    <updated>2014-01-27T18:48:00+01:00</updated>
+    <id>http://blog.balakiriev.com/blog/2014/01/27/tracking-domains-and-subdomains-in-google-analytics</id>
+    <content type="html"><![CDATA[<p>Steps for correct google analytics config tacking the domain and subdomain:</p>
+
+<p>This is only required if cross tracking to other domains and/or subdomains of other domains.
+Links and forms do not generally need to be configured for subdomain tracking between the tld and its own subdomains (the whole point of subdomain tracking)</p>
+
+<!-- more -->
+
+
+<p>3 profiles should be as follows:
+All sites &ndash; unfiltered (from memory this usually shows the subdomain traffic as referral traffic)
+this should remain unfiltered as a &ldquo;master&rdquo; profile</p>
+
+<p>www.site.com
+should have a hostname include filter
+Filter name &ndash; your choice
+Filter type &ndash; custom
+include
+Filter Field &ndash; hostname
+Filter pattern &ndash; ^www.site.com
+case sensitive &ndash; no</p>
+
+<p>sub.site.com
+should have a hostname include filter
+Filter name &ndash; your choice
+Filter type &ndash; custom
+include
+Filter Field &ndash; hostname
+Filter pattern &ndash; ^sub.site.com
+case sensitive &ndash; no</p>
+
+<p>if you want to track all traffic across the subdomain and tld you need the following filter applied to a duplicate profileFilter Filter name &ndash; your choice
+Filter type &ndash; custom
+advanced
+Field A &ndash;> Extract A   Hostname  (.<em>)
+Field B &ndash;> Extract B  Request URI  (.</em>)
+Output To &ndash;> Constructor   Request URI   $A1$B1
+Yes
+No
+Yes
+No</p>
+
+<p>Usual &ldquo;best practice&rdquo; would have you elect either the www or non www url as the canonical domain address.
+This is both for correct tracking and best SEO practices.. if it all resolves to a single domain address then pagerank doesnt get diluted if search engines arent sure which one to index and split it between the two.. and backlinks also resolve to a single address as well.</p>
+
+<p>So.. if www.site.com is the domain url you would usually use and that you want indexed.. a htaccess 301 redirect would be setup to redirect site.com to www.site.com.. so it all gets seen just as www.site.com.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pro tips for writing better rspec tests]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/"/>
+    <updated>2013-12-30T15:42:00+01:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests</id>
+    <content type="html"><![CDATA[<p>Writing ‘good code’ is always a challenge for every project. Unfortunately, we always associate it with development and not tests. What about automation test code? Ever notice that you have write more automation code than the actual lines of development code?</p>
+
+<p>Improper automation code leads to slow running specs, huge LOC in your spec files and a whole lot of confusion when you open a spec file. So, how does one avoid these problems?</p>
+
+<p>Here are a few guidelines:</p>
+
+<p>Tip #1: Follow
+<a title="Rspec-style" href="https://github.com/howaboutwe/rspec-style-guide">Rspec style</a></p>
+
+<p>Tip #2: Independent tests</p>
+
+<p>We could use the word idempotent here but as a thumb rule there should not be any dependencies across specs and if we run the test multiple times in succession, it should give the same result So, it’s very important that every spec  run in clean database environment. Use <a href="https://github.com/bmabey/database_cleaner">database cleaner</a>  gem properly, so that you don’t end of having to seed the database before each test! So, if you don’t want roles and countries being deleted,</p>
+
+<p>config.before(:suite) do
+  DatabaseCleaner.strategy = :truncation, {:except => %w[roles countries]}
+end</p>
+
+<!--more -->
+
+
+<p>Tip #3: Use expect and not should syntax</p>
+
+<p>It’s just nice and clean!  Use the Transpec gem helps you to convert from should syntax to expect syntax</p>
+
+<p>expect(User.all.count).to eq(1)
+instead of</p>
+
+<p>User.all.count.should == 1</p>
+
+<p>Tip#4: Use the new syntax for object creation</p>
+
+<p>Use the new FactoryGirl syntax that is supported in factory_girl4. This helps the code be clean of any harsh gem dependent syntax of class names!</p>
+
+<p>create(:user)
+instead of</p>
+
+<p>FactoryGirl.create(:user)</p>
+
+<p>Tip #5: Use let variables instead of instance variables</p>
+
+<p>This makes code look cleaner. For better understanding about let read the answer given by Myron. Here is an example</p>
+
+<p>describe Project do
+  let(:project) { build(:project) }</p>
+
+<p>  it &ldquo;project should be valid&rdquo; do</p>
+
+<pre><code>expect(project.valid?).to eq(true)
+</code></pre>
+
+<p>  end
+end
+Now, when the example executes it defines a method called project if its not defined already or simply returns the value. Fast and efficient.</p>
+
+<p>Tip #6: Use correct expectations for a spec</p>
+
+<p>Obvious as it seems – the test we write should test the write stuff – not just make the test pass! Here is an example of making a test case pass.</p>
+
+<p>context &ldquo;#edit&rdquo; do
+  it &ldquo;user should be able to edit his profile&rdquo; do</p>
+
+<pre><code>get :edit, id: user.id
+expect(response).to be_success
+</code></pre>
+
+<p>  end
+end
+So, your expectation should ideally be</p>
+
+<p>describe UsersController do
+  context &ldquo;#edit&rdquo; do</p>
+
+<pre><code>#render_views
+it "user should be able to edit his profile" do
+  get :edit, id: user.id
+  expect(response).to render_template("edit")
+end
+</code></pre>
+
+<p>  end
+end
+Here #edit is a method defined in UsersController. So I defined a context in my specs.</p>
+
+<p>Do remember that by default all controller specs stub the template rendering unless and until you include render_views</p>
+
+<p>Tip #7: Use shared examples.</p>
+
+<p>When you want to test the same functionality across different subjects, for example different kinds of users, use shared examples.</p>
+
+<p>context &ldquo;#edit&rdquo; do
+  it &ldquo;admin should be able to edit his profile&rdquo;
+  it &ldquo;distributor should be able to edit his profile&rdquo;
+end
+You can write as</p>
+
+<p>context &ldquo;#edit&rdquo; do
+  shared_examples &ldquo;profile_editing&rdquo; do</p>
+
+<pre><code>it "user should be able to edit his profile"
+</code></pre>
+
+<p>  end</p>
+
+<p>  context &ldquo;admin&rdquo; do</p>
+
+<pre><code>include_examples "profile_editing"
+it "should be able see to list of distributors"
+</code></pre>
+
+<p>  end</p>
+
+<p>  context &ldquo;distributor&rdquo; do</p>
+
+<pre><code>include_examples "profile_editing"
+it "should not able to see list of distributors"
+</code></pre>
+
+<p>  end
+end
+A word of caution – you may lost readability if you use too many shared examples in single file.</p>
+
+<p>Tip #8: Use conditional hooks</p>
+
+<p>Sometimes if you want to execute some piece of code only for one example but not for all examples in a context then you can use conditional hooks.</p>
+
+<p>context &ldquo;#update&rdquo; do
+  before(:each, run: true) do</p>
+
+<pre><code># do something
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &ldquo;example1&rdquo;, run: :true
+  it &ldquo;example2&rdquo;
+end
+Now before(:each) will run only for first example but not for second example.</p>
+
+<p>Tip #9: Profiling your examples</p>
+
+<p>rspec gives you an option to examine how much time does a example group take to run.  Simply run specs with the –profile flag.</p>
+
+<p>rspec ./spec/models/user_spec.rb:51 &mdash;profile</p>
+
+<h1>output:</h1>
+
+<p>0.22431 seconds ./spec/models/user_spec.rb:51
+Tip #10: Tagging</p>
+
+<p>When you have a large test suite and you changed some code, how do you ensure that your change didn’t breaks existing functionality? One way is to run your specs locally then push then your Continuous Integration server that runs all specs. This is time consuming if you want to test only a specific set of tests.</p>
+
+<p>Tag them! Run your module specified specs by using tags. For example, suppose we have a Commission feature and we written model specs, controller specs and integration specs for it. We can easily tag each file with commission:true.  So when we change something related to commissions,  we can run only commission related specs!. We can tag our scenarios as below</p>
+
+<h1>spec/models/commission_spec.rb</h1>
+
+<p>describe Commission, commission: true do
+  # do something
+end
+rspec –tag commission
+Note: We can tag entire context or a single example in the spec file. For more information please follow this link</p>
+
+<p>All these tips are a results of practical problems I have faced and overcome and a result of finding out the best we can do our own testing. More suggestions and tips are welcome!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Creation of remote git branch]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch/"/>
+    <updated>2013-12-29T16:17:00+01:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch</id>
+    <content type="html"><![CDATA[<p>1056
+down vote
+accepted
+First, you create your branch locally</p>
+
+<p>git checkout -b your_branch
+The remote branch is automatically created when you push it to the remote server. So when you feel for it, you can just do</p>
+
+<p>git push &lt;remote-name> &lt;branch-name>
+Your colleagues would then just pull that branch, and it&rsquo;s automatically created locally.</p>
+
+<!-- more -->
+
+
+<p>Note however that formally, the format is:</p>
+
+<p>git push &lt;remote-name> &lt;local-branch-name>:&lt;remote-branch-name>
+But when you omit one, it assumes both names are the same.</p>
+
+<p>From a comment below:</p>
+
+<p>You might want to use git push -u &lt;remote-name> &lt;branch-name> instead, so that a subsequent git pull will know what to do.</p>
+
+<p>– Bart Schuller</p>
+
+<p>The -u option sets-up a upstream branch:</p>
+
+<p>For every branch that is up to date or successfully pushed, add upstream (tracking) reference, used by argument-less git-pull(1) and other commands.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Globalize your .gitignore]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/12/29/globalize-your-gitignore/"/>
+    <updated>2013-12-29T15:42:00+01:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/12/29/globalize-your-gitignore</id>
+    <content type="html"><![CDATA[<p>When I was new to git, I would always jam the same old stuff in each project&rsquo;s .gitignore, like:</p>
+
+<p>.gitignore</p>
+
+<p>.DS_Store</p>
+
+<h1>other os x-y stuff</h1>
+
+<p>node_modules
+bower_components
+node_modules and bower_components make sense to be included in a project&rsquo;s .gitignore. Whatever developer may check out and contribute to your project will end up with those directories created, and you may or may not want them hidden from your repository.</p>
+
+<!-- more -->
+
+
+<p>Other stuff, however, may be unique to your development environment. Things such as hidden OS files, IDE project files, etc. Is every contributor to your project meant to update .gitignore to consider their environment? This problem is neverending.</p>
+
+<p>Then, I remembered something very important. git&rsquo;s smarter than I am. They&rsquo;ve totally figured this out.</p>
+
+<p>Introducing&hellip;</p>
+
+<p>~/.gitignore_global</p>
+
+<h1>Compiled source</h1>
+
+<h6>#</h6>
+
+<p><em>.com
+</em>.class
+<em>.dll
+</em>.exe
+<em>.o
+</em>.so</p>
+
+<h1>Packages</h1>
+
+<h6>#</h6>
+
+<h1>it&rsquo;s better to unpack these files and commit the raw source</h1>
+
+<h1>git has its own built in compression methods</h1>
+
+<p><em>.7z
+</em>.dmg
+<em>.gz
+</em>.iso
+<em>.jar
+</em>.rar
+<em>.tar
+</em>.zip</p>
+
+<h1>Logs and databases</h1>
+
+<h6>#</h6>
+
+<p><em>.log
+</em>.sql
+*.sqlite</p>
+
+<h1>OS generated files</h1>
+
+<h6>#</h6>
+
+<p>.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Create that file, then run:</p>
+
+<p>$ git config &mdash;global core.excludesfile ~/.gitignore_global
+Every git project, system-wide, will now respect this list of ignored file patterns, saving you the trouble!</p>
+
+<p>The technique above is detailed in GitHub&rsquo;s Help Pages.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Github Blog Using Octopress]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/12/29/creating-a-github-blog-using-octopress/"/>
+    <updated>2013-12-29T15:21:00+01:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/12/29/creating-a-github-blog-using-octopress</id>
+    <content type="html"><![CDATA[<p>Warning This article assumes you already installed RVM and Ruby.</p>
+
+<p>Quick Summary for creating and deploying a post in Octopress</p>
+
+<p>$ rake new_post[&ldquo;New Post&rdquo;]
+$ rake generate
+$ git add .
+$ git commit -am &ldquo;Some comment here.&rdquo;
+$ git push origin source
+$ rake deploy
+Installation Process of Octopress</p>
+
+<!-- more -->
+
+
+<p>Octopress is a framework designed for Jekyll to build a static website. It’s very easy to setup a blog with Octopress. Post are edited using Markdown. Yes, you need to have a Github account at Github.com.</p>
+
+<p>Go to the terminal and clone the Octopress repo:</p>
+
+<p>git clone git://github.com/imathis/octopress.git octopress</p>
+
+<p>cd octopress
+Check the version of Ruby is 1.9.2. This version is required.</p>
+
+<p>ruby &mdash;version</p>
+
+<p>bundle install
+This command installs Octopress</p>
+
+<p>rake install
+Deploying to Github</p>
+
+<p>Create a new Github repository. If you are creating a personal blog create a repo called:</p>
+
+<p>username.github.com
+After creating the repo, run the following command.</p>
+
+<p>$rake setup_github_pages
+Which is supposed to:</p>
+
+<p>init a git repo
+rename the branch from master to source
+add your repo to origin.
+Running the previous command shows this:</p>
+
+<p>Enter the read/write url for your repository
+You have to enter it like this:</p>
+
+<p>git@github.com:username/username.github.com.git
+For me it didn’t rename the branch from master to source or add my remote repo. I did it manually (see below)</p>
+
+<p>Add your remote repo</p>
+
+<p>Check what remote repositories you have:</p>
+
+<p>git remote -v
+My output was:</p>
+
+<p>octopress   git://github.com/imathis/octopress.git (fetch)
+octopress   git://github.com/imathis/octopress.git (push)
+To add your repo do:</p>
+
+<p>git remote add origin git@github.com:username/username.github.com.git
+Rename the branch from master to source</p>
+
+<p>$git branch
+* master
+$git branch -m master source
+$git branch
+* source
+Preview on development stage</p>
+
+<p>$ rake preview
+Then browse to:</p>
+
+<p>localhost:4000
+If you get this error:</p>
+
+<p>Sorry, I cannot find /
+Read this link: Deploying to a Subdirectory</p>
+
+<p>First push to Github</p>
+
+<p>$rake generate
+$git add .
+$git commit -am &ldquo;First deploy to github.&rdquo;
+$git push origin source
+$rake deploy
+Create a new posting</p>
+
+<p>$rake new_post[&ldquo;Creating a Github Blog Using Octopress&rdquo;]
+Go to the app folder source/_posts to find the new posting</p>
+
+<p>Edit the posting and then follow these steps</p>
+
+<p>$rake generate
+$git add .
+$git commit -m &ldquo;Initial blog post.&rdquo;
+$git push origin source
+$rake deploy
+Add a custom domain</p>
+
+<p>Go to source folder and create 2 files :</p>
+
+<p>(mate if you are using Textmate)</p>
+
+<p>cd source
+mate CNAME
+mate .nojekyll
+Open the CNAMe file and this line:</p>
+
+<p>www.yourdomain.com
+The NoJekyll file will make Octopress works in Github Pages.</p>
+
+<p>Push again to github</p>
+
+<p>rake generate
+git add .
+git add -am &lsquo;domain configuration&rsquo;
+git push origin source
+rake deploy
+Github need time to read your CNAME and updating the sites.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Show generated SQL in Rails 3 console]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/10/05/show-generated-sql-in-rails-3-console/"/>
+    <updated>2013-10-05T00:14:00+02:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/10/05/show-generated-sql-in-rails-3-console</id>
+    <content type="html"><![CDATA[<p>Have you ever wanted to see the resulting SQL of a query in Rails console? Well, unfortunately there&rsquo;s not really an &lsquo;easy&rsquo; way to do this, other than hacking the console, so here we go.</p>
+
+<!-- more -->
+
+
+<p>Fire up your Rails console. I&rsquo;m using Rails 3, but this should would in &lt;3:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rails c
+</span><span class='line'>Loading development environment <span class="o">(</span>Rails 3.0.7<span class="o">)</span>
+</span><span class='line'>&gt;&gt; _
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Cool, awesome, great. Now, we need to tell Rails console that we want to show what&rsquo;s being logged:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rails c
+</span><span class='line'>Loading development environment <span class="o">(</span>Rails 3.0.7<span class="o">)</span>
+</span><span class='line'>&gt;&gt; ActiveRecord::Base.logger <span class="o">=</span> Logger.new<span class="o">(</span>STDOUT<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We are creating a new instance of the <code>ActiveRecord::Base#logger</code> class. Normally, you would specify this as a file (for example, if you were performing an AR operation that you wanted to log separately from Application logs):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;./logs/custom_log.log&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But in this case, we are simply &ldquo;writing&rdquo; to <code>STDOUT</code>. Now, when you run a query, you should see the supplemental query just as if you were viewing your development server logs!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Thought Process]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/10/05/thought-process/"/>
+    <updated>2013-10-05T00:13:00+02:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/10/05/thought-process</id>
+    <content type="html"><![CDATA[<p>Today, I was about to Tweet something on Twitter. As I was looking down my activity feed, I thought to myself: &ldquo;what is a Tweet in the past?&rdquo;</p>
+
+<!-- more -->
+
+
+<p>Here&rsquo;s how my mind unfolded that question:</p>
+
+<blockquote><p>Is a tweet in the past a twot or a twit?</p>
+
+<p>Maybe a twittwot?</p>
+
+<p>Or twittertotter? (like pitter-patter, right?)</p>
+
+<p>Teeter-totter? (briefly reminisce childhood memories)</p>
+
+<p>TATER TOTS! (I don&rsquo;t even like breakfast)</p>
+
+<p>Food.</p></blockquote>
+
+<p>Now re-read in Ellen Degeneres&rsquo;s Dory voice in Finding Nemo.</p>
+
+<p>Welcome to my life.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Apple iPhone Tracks you Everywhere]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/10/05/apple-iphone-tracks-you-everywhere/"/>
+    <updated>2013-10-05T00:11:00+02:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/10/05/apple-iphone-tracks-you-everywhere</id>
+    <content type="html"><![CDATA[<p><a href="http://editorial.designtaxi.com/news-track2004/1.jpg">Map</a></p>
+
+<p>A team of researchers recently uncovered that the Apple iPhone secretly stores your location data at regular intervals in a hidden text file and then uploads that file to your computer.</p>
+
+<!-- more -->
+
+
+<p>Anyone will technical know-how could possibly gain access to this data. This poses a huge security risk and people&rsquo;s privacy could be in jeopardy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Custom Domain URL Shorteners with bit.ly]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly/"/>
+    <updated>2013-10-05T00:09:00+02:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly</id>
+    <content type="html"><![CDATA[<p>I recently acquired <a href="http://leav.in">leav.in</a> because I wanted to make my own URL shortening service. After spending a few hours making a little Rails application that connected to a backend service and a nice little UI, I decided to actually google &ldquo;custom domain URL shortner.&rdquo; Low and behold, <a href="http://bit.ly">bit.ly</a> offers a free service, bit.ly pro that provides custom domain short URL service and then some! It was a little difficult to fiddle through (not because of configuration, but just finding stuff), so here&rsquo;s a little walk through to help you out!</p>
+
+<!-- more -->
+
+
+<ol>
+<li>Buy a short domain name. I recommend <a href="http://name.com">name.com</a> just because they give great tools for managing DNS, are cheap, and their DNS updates almost instantly.</li>
+<li><p>Create a bit.ly account:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjh9aPGWg1qhdc0f.png" alt="Signup for bit.ly" /></p></li>
+<li><p>Add bit.ly pro to your account (it&rsquo;s free)</p></li>
+<li><p>Enter your settings panel:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhjmF8hv1qhdc0f.png" alt="Settings Panel" /></p></li>
+<li><p>Click on your bit.ly pro settings:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhlkrzCN1qhdc0f.png" alt="bit.ly pro settings" /></p></li>
+<li><p>Go and modify your DNS records with your host as described in the grey box. Do this <strong>first</strong> so that the changes can populate as you do step</p></li>
+<li><p>Enter your short URL domain in the box provided and click &ldquo;Add Short Domain&rdquo;.</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhtlM1zN1qhdc0f.png" alt="Add short domain" /></p></li>
+<li><p>Be sure to verify that your DNS is configured correctly. Depending on your provider, you may need to wait up to 48 hours for these changes to populate:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhwqJQ0k1qhdc0f.png" alt="DNS" /></p></li>
+<li><p>Unless something terrible went wrong, you should see something similar to the following:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhy36AsG1qhdc0f.png" alt="Final" /></p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Functionality in initial webapps]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/10/04/functionality-in-initial-webapps/"/>
+    <updated>2013-10-04T23:52:00+02:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/10/04/functionality-in-initial-webapps</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m a firm believer that UI should always supersede functionality, especially in the case of new webapps. People generally lash out when I say such things, but when you&rsquo;re starting a small company or launching a new product, a fully functional website does you no good if people don&rsquo;t know how to use it. Conversely, a buggy website with helpful, encouraging error handlers will encourage users to keep coming back.</p>
+
+<!-- more -->
+
+
+<p>Think about it this way &ndash; if Facebook suddenly went down, would you come back in an hour? If Facebook never threw any errors and was &ldquo;perfect&rdquo;, yet it was totally unusable, would you still use it? Probably not!</p>
+
+<p>A functional UI is more important than a functional app.</p>
+
+<p>Developers should spend more time analyzing user-testing instead of debugging features. While I don&rsquo;t condone releasing a buggy application, I&rsquo;d much rather see a pretty application with a few bugs released over a perfect application that only developers know how to use.</p>
+
+<p>Development is often thought of in the opposite direction &ndash; get your database structure and &ldquo;code&rdquo;; written, and then move on to making the application look pretty. I completely despise this ideology! End users don&rsquo;t care about code! They don&rsquo;t care that your database is in third normal form. They want things that look fancy! Fade in/fade out transitions, slide up/slide downs, spinners when things are loading &ndash; these are things that users want!</p>
+
+<p>All too often developers are concerned with making their code faster, better, or prettier, yet they fail to remember the end user! Add drag/drop where you can, make things as intuitive as possible, and don&rsquo;t forget the end user! Make your 404s and 500s informative and encourage users to return.</p>
+]]></content>
+  </entry>
+  
+</feed>

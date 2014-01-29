@@ -1,0 +1,17 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Owner: Aleksandr Balakiriev
+  Site: http://blog.balakiriev.com
+  Twitter: @sbalakirev
+
+  UX Designer: Aleksandr Balakiriev
+  Site: http://blog.balakiriev.com
+  Twitter: @sbalakirev
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery
+  Software: Sublime Text 2

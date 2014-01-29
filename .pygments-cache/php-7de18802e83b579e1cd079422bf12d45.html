@@ -1,0 +1,9 @@
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+  <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;APP_DOMAIN&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;HTTP_HOST&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">APP_DOMAIN</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">header</span><span class="p">(</span><span class="s1">&#39;HTTP/1.1 301 Moved Permanently&#39;</span><span class="p">);</span>
+    <span class="nx">header</span><span class="p">(</span><span class="s1">&#39;Location: &#39;</span> <span class="o">+</span> <span class="nx">APP_DOMAIN</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>

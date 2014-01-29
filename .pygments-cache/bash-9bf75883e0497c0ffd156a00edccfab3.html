@@ -1,0 +1,35 @@
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;FILL THIS IN&quot;</span> <span class="c"># The github user or organization to create the repos</span>
+
+<span class="k">for </span>cookbook in <span class="sb">`</span>ls cookbooks<span class="sb">`</span>
+<span class="k">do</span>
+  <span class="c"># Create the remote repository</span>
+  hub create <span class="nv">$USER</span>/<span class="nv">$cookbook</span> -p -d <span class="s2">&quot;Private repository for $cookbook&quot;</span>
+  git remote add <span class="nv">$cookbook</span> git@github.com:<span class="nv">$USER</span>/<span class="nv">$cookbook</span>.git
+
+  <span class="c"># Filter out anything relating to this cookbook - this will save the git history related</span>
+  <span class="c"># to this cookbook</span>
+  git filter-branch --prune-empty --subdirectory-filter cookbooks/<span class="nv">$cookbook</span> master
+
+  <span class="c"># Push to the new remote</span>
+  git push <span class="nv">$cookbook</span> master
+
+  <span class="c"># Remove the remote (we don&#39;t need it anymore)</span>
+  git remote rm <span class="nv">$cookbook</span>
+
+  <span class="c"># Reset to master for the next cookbook</span>
+  git reset --hard HEAD
+
+  <span class="c"># Remove the cookbook</span>
+  git rm -rf cookbooks/<span class="nv">$cookbook</span>
+
+  <span class="c"># Add this cookbook to the Berksfile</span>
+  <span class="nb">echo</span> <span class="s2">&quot;cookbook &#39;$cookbook&#39;, github: &#39;$USER/$cookbook&#39;&quot;</span> &gt;&gt; Berksfile
+
+  <span class="c"># Save master with the new changes</span>
+  git add Berksfile
+  git commit -m <span class="s2">&quot;Moved $cookbook to Berkshelf&quot;</span>
+  git push origin master
+<span class="k">done</span>
+
+bundle <span class="nb">exec </span>berks install
+</pre></div>

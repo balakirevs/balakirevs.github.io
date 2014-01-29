@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Shortening | Tech Blog]]></title>
+  <link href="http://blog.balakiriev.com/blog/categories/shortening/atom.xml" rel="self"/>
+  <link href="http://blog.balakiriev.com/"/>
+  <updated>2014-01-29T20:27:26+01:00</updated>
+  <id>http://blog.balakiriev.com/</id>
+  <author>
+    <name><![CDATA[Aleksandr Balakiriev]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Custom Domain URL Shorteners with bit.ly]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly/"/>
+    <updated>2013-10-05T00:09:00+02:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly</id>
+    <content type="html"><![CDATA[<p>I recently acquired <a href="http://leav.in">leav.in</a> because I wanted to make my own URL shortening service. After spending a few hours making a little Rails application that connected to a backend service and a nice little UI, I decided to actually google &ldquo;custom domain URL shortner.&rdquo; Low and behold, <a href="http://bit.ly">bit.ly</a> offers a free service, bit.ly pro that provides custom domain short URL service and then some! It was a little difficult to fiddle through (not because of configuration, but just finding stuff), so here&rsquo;s a little walk through to help you out!</p>
+
+<!-- more -->
+
+
+<ol>
+<li>Buy a short domain name. I recommend <a href="http://name.com">name.com</a> just because they give great tools for managing DNS, are cheap, and their DNS updates almost instantly.</li>
+<li><p>Create a bit.ly account:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjh9aPGWg1qhdc0f.png" alt="Signup for bit.ly" /></p></li>
+<li><p>Add bit.ly pro to your account (it&rsquo;s free)</p></li>
+<li><p>Enter your settings panel:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhjmF8hv1qhdc0f.png" alt="Settings Panel" /></p></li>
+<li><p>Click on your bit.ly pro settings:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhlkrzCN1qhdc0f.png" alt="bit.ly pro settings" /></p></li>
+<li><p>Go and modify your DNS records with your host as described in the grey box. Do this <strong>first</strong> so that the changes can populate as you do step</p></li>
+<li><p>Enter your short URL domain in the box provided and click &ldquo;Add Short Domain&rdquo;.</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhtlM1zN1qhdc0f.png" alt="Add short domain" /></p></li>
+<li><p>Be sure to verify that your DNS is configured correctly. Depending on your provider, you may need to wait up to 48 hours for these changes to populate:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhwqJQ0k1qhdc0f.png" alt="DNS" /></p></li>
+<li><p>Unless something terrible went wrong, you should see something similar to the following:</p>
+
+<p> <img src="http://media.tumblr.com/tumblr_ljjhy36AsG1qhdc0f.png" alt="Final" /></p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

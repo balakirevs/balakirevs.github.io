@@ -1,0 +1,24 @@
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;chef&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
+
+<span class="k">def</span> <span class="nf">loader</span>
+  <span class="vi">@loader</span> <span class="o">||=</span> <span class="o">::</span><span class="ss">Chef</span><span class="p">:</span><span class="ss">:CookbookLoader</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;cookbooks&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">community_cookbooks</span> <span class="o">=</span> <span class="sb">`git branch | grep &#39;chef-vendor&#39; | awk -F- &#39;{print $3}&#39;`</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">community_cookbooks</span><span class="o">.</span><span class="n">collect!</span><span class="p">{</span> <span class="o">|</span><span class="n">cookbook</span><span class="o">|</span> <span class="n">loader</span><span class="o">[</span><span class="n">cookbook</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span> <span class="p">}</span>
+
+<span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;Berksfile&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">write</span> <span class="s2">&quot;site :opscode</span><span class="se">\n</span><span class="s2">&quot;</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">write</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+  <span class="n">community_cookbooks</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cookbook</span><span class="o">|</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span> <span class="s2">&quot;cookbook &#39;</span><span class="si">#{</span><span class="n">cookbook</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">cookbook</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">community_cookbooks</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cookbook</span><span class="o">|</span>
+  <span class="no">FileUtils</span><span class="o">.</span><span class="n">rm_rf</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;cookbooks&#39;</span><span class="p">,</span> <span class="n">cookbook</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="sb">`bundle exec berks install`</span>
+</pre></div>

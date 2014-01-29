@@ -1,0 +1,11 @@
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">up</span>
+  <span class="n">create_table</span> <span class="ss">:links</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:in_url</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:out_url</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">integer</span> <span class="ss">:http_status</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="mi">301</span> <span class="c1"># default to :permanent</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="n">add_index</span> <span class="ss">:links</span><span class="p">,</span> <span class="ss">:in_url</span>
+<span class="k">end</span>
+</pre></div>

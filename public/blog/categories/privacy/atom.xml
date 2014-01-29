@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Privacy | Tech Blog]]></title>
+  <link href="http://blog.balakiriev.com/blog/categories/privacy/atom.xml" rel="self"/>
+  <link href="http://blog.balakiriev.com/"/>
+  <updated>2014-01-29T20:27:26+01:00</updated>
+  <id>http://blog.balakiriev.com/</id>
+  <author>
+    <name><![CDATA[Aleksandr Balakiriev]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Apple iPhone Tracks you Everywhere]]></title>
+    <link href="http://blog.balakiriev.com/blog/2013/10/05/apple-iphone-tracks-you-everywhere/"/>
+    <updated>2013-10-05T00:11:00+02:00</updated>
+    <id>http://blog.balakiriev.com/blog/2013/10/05/apple-iphone-tracks-you-everywhere</id>
+    <content type="html"><![CDATA[<p><a href="http://editorial.designtaxi.com/news-track2004/1.jpg">Map</a></p>
+
+<p>A team of researchers recently uncovered that the Apple iPhone secretly stores your location data at regular intervals in a hidden text file and then uploads that file to your computer.</p>
+
+<!-- more -->
+
+
+<p>Anyone will technical know-how could possibly gain access to this data. This poses a huge security risk and people&rsquo;s privacy could be in jeopardy.</p>
+]]></content>
+  </entry>
+  
+</feed>

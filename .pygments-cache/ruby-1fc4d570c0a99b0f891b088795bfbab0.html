@@ -1,0 +1,39 @@
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s1">&#39;my_cookbook::default&#39;</span> <span class="k">do</span>
+  <span class="n">platforms</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ubuntu&#39;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="s1">&#39;package&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;apache2&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;versions&#39;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;10.04&#39;</span><span class="p">,</span> <span class="s1">&#39;12.04&#39;</span><span class="o">]</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;debian&#39;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="s1">&#39;package&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;apache2&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;versions&#39;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;6.0.5&#39;</span><span class="o">]</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;centos&#39;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="s1">&#39;package&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;versions&#39;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;5.8&#39;</span><span class="p">,</span> <span class="s1">&#39;6.0&#39;</span><span class="p">,</span> <span class="s1">&#39;6.2&#39;</span><span class="p">,</span> <span class="s1">&#39;6.3&#39;</span><span class="o">]</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;redhat&#39;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="s1">&#39;package&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;versions&#39;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;5.8&#39;</span><span class="p">,</span> <span class="s1">&#39;6.3&#39;</span><span class="o">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">platforms</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">platform</span><span class="p">,</span> <span class="p">(</span><span class="n">package</span><span class="p">,</span> <span class="n">versions</span><span class="p">)</span><span class="o">|</span>
+    <span class="n">versions</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">version</span><span class="o">|</span>
+      <span class="n">context</span> <span class="s2">&quot;On </span><span class="si">#{</span><span class="n">platform</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span>
+        <span class="n">before</span> <span class="k">do</span>
+          <span class="no">Fauxhai</span><span class="o">.</span><span class="n">mock</span><span class="p">(</span><span class="ss">platform</span><span class="p">:</span> <span class="n">platform</span><span class="p">,</span> <span class="ss">version</span><span class="p">:</span> <span class="n">version</span><span class="p">)</span>
+        <span class="k">end</span>
+
+        <span class="n">let</span><span class="p">(</span><span class="ss">:chef_run</span><span class="p">)</span> <span class="p">{</span> <span class="ss">ChefSpec</span><span class="p">:</span><span class="ss">:ChefRunner</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">converge</span><span class="p">(</span><span class="s1">&#39;my_cookbook::default&#39;</span><span class="p">)</span> <span class="p">}</span>
+
+        <span class="n">it</span> <span class="s1">&#39;installs the apache2 package&#39;</span> <span class="k">do</span>
+          <span class="n">chef_run</span><span class="o">.</span><span class="n">should</span> <span class="n">install_package</span> <span class="n">package</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>

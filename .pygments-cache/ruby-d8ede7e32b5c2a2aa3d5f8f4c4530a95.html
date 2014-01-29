@@ -1,0 +1,28 @@
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Ability</span>
+  <span class="kp">include</span> <span class="ss">CanCan</span><span class="p">:</span><span class="ss">:Ability</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span>
+
+    <span class="k">begin</span>
+      <span class="nb">send</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">role</span><span class="p">)</span>
+    <span class="k">rescue</span>
+      <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Undefined role method for role </span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">role</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+      <span class="n">guest</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+  <span class="k">def</span> <span class="nf">admin</span>
+    <span class="n">can</span> <span class="ss">:manage</span><span class="p">,</span> <span class="no">Resource</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">employee</span>
+    <span class="n">can</span> <span class="ss">:update</span><span class="p">,</span> <span class="no">Resource</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">guest</span>
+    <span class="n">can</span> <span class="ss">:read</span><span class="p">,</span> <span class="no">Resource</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
