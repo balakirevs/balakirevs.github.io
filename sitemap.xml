@@ -2,60 +2,60 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://blog.balakiriev.com/blog/2013/10/04/functionality-in-initial-webapps/</loc>
-        <lastmod>2014-01-26T18:54:10+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.balakiriev.com/blog/2013/10/05/custom-domain-url-shorteners-with-bit-dot-ly/
         </loc>
-        <lastmod>2013-12-29T15:25:33+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.balakiriev.com/blog/2013/10/05/apple-iphone-tracks-you-everywhere/</loc>
-        <lastmod>2014-01-27T19:00:18+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.balakiriev.com/blog/2013/10/05/thought-process/</loc>
-        <lastmod>2013-12-29T15:25:56+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.balakiriev.com/blog/2013/10/05/show-generated-sql-in-rails-3-console/
         </loc>
-        <lastmod>2013-12-29T15:25:43+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.balakiriev.com/blog/2013/12/29/creating-a-github-blog-using-octopress/
         </loc>
-        <lastmod>2013-12-29T15:26:03+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.balakiriev.com/blog/2013/12/29/globalize-your-gitignore/</loc>
-        <lastmod>2013-12-29T15:44:03+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.balakiriev.com/blog/2013/12/29/creation-of-remote-git-branch/</loc>
-        <lastmod>2013-12-29T16:18:22+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.balakiriev.com/blog/2013/12/30/pro-tips-for-writing-better-rspec-tests/
         </loc>
-        <lastmod>2013-12-30T16:01:10+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.balakiriev.com/blog/2014/01/27/tracking-domains-and-subdomains-in-google-analytics/
         </loc>
-        <lastmod>2014-01-27T18:56:16+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.balakiriev.com/blog/archives/</loc>
-        <lastmod>2014-01-27T19:00:18+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.balakiriev.com/</loc>
-        <lastmod>2014-01-27T19:00:18+01:00</lastmod>
+        <lastmod>2014-01-29T20:21:30+01:00</lastmod>
     </url>
 </urlset>
